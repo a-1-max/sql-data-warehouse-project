@@ -27,8 +27,8 @@ Usage Notes:
 	GO
 
 
-	SELECT	 cst_id,
-			 COUNT(*) 
+	SELECT	  cst_id
+			 ,COUNT(*) 
 	FROM	 DataWarehouse.silver.crm_cust_info
 	GROUP BY cst_id
 	HAVING	 COUNT(*) > 1 OR cst_id IS NULL;
@@ -49,8 +49,8 @@ Usage Notes:
 -- ====================================================================
 -- Check for NULLs or Duplicates in Primary Key
 -- Expectation: No Results
-	SELECT	 prd_id,
-			 COUNT(*) 
+	SELECT	  prd_id
+			 ,COUNT(*) 
 	FROM	 DataWarehouse.silver.crm_prd_info
 	GROUP BY prd_id
 	HAVING	 COUNT(*) > 1 OR prd_id IS NULL;
@@ -102,15 +102,15 @@ Usage Notes:
 	SELECT DISTINCT	 sls_sales
 					,sls_quantity
 					,sls_price 
-	FROM	DataWarehouse.silver.crm_sales_details
-	WHERE	sls_sales != sls_quantity * sls_price
-		OR sls_sales IS NULL 
-		OR sls_quantity IS NULL 
-		OR sls_price IS NULL
-		OR sls_sales <= 0 
-		OR sls_quantity <= 0 
-		OR sls_price <= 0
-	ORDER BY sls_sales, sls_quantity, sls_price;
+	FROM	 DataWarehouse.silver.crm_sales_details
+	WHERE		sls_sales != sls_quantity * sls_price
+			 OR sls_sales IS NULL 
+			 OR sls_quantity IS NULL 
+			 OR sls_price IS NULL
+			 OR sls_sales <= 0 
+			 OR sls_quantity <= 0 
+			 OR sls_price <= 0
+	ORDER BY  sls_sales, sls_quantity, sls_price;
 
 
 -- ====================================================================
@@ -151,4 +151,3 @@ Usage Notes:
 -- Data Standardization & Consistency
 	SELECT DISTINCT	maintenance 
 	FROM			DataWarehouse.silver.erp_px_cat_g1v2;
-
